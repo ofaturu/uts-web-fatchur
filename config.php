@@ -1,17 +1,16 @@
 <?php
+session_start();
 
-$databaseHost = 'localhost';
-
-$databaseName = 'ftrans';
-
+$databaseHost     = 'localhost';
+$databaseName     = 'ftrans';
 $databaseUsername = 'root';
-
 $databasePassword = '';
 
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
 
+if (!$mysqli) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
 
-// Make sure the variable name is $mysqli
-
-$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
-
+mysqli_set_charset($mysqli, 'utf8');
 ?>
