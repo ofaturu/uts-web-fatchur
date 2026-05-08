@@ -311,11 +311,25 @@ $msg = $_GET['msg'] ?? '';
 
     .jenis-badge {
       font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
       background: var(--surface2);
       color: var(--text);
       border: 1px solid var(--border);
-      padding: 0.2rem 0.6rem;
+      padding: 0.25rem 0.75rem;
       border-radius: 6px;
+      white-space: nowrap;
+    }
+    .jenis-badge.roda2 {
+      background: rgba(94,170,204,0.1);
+      border-color: rgba(94,170,204,0.3);
+      color: var(--info);
+    }
+    .jenis-badge.roda4 {
+      background: rgba(94,204,139,0.1);
+      border-color: rgba(94,204,139,0.3);
+      color: var(--success);
     }
 
     .harga-cell {
@@ -449,7 +463,21 @@ $msg = $_GET['msg'] ?? '';
           <td style="color:var(--muted)"><?= $i + 1 ?></td>
           <td><span class="kode-badge"><?= htmlspecialchars($k['kode_unik_kendaraan']) ?></span></td>
           <td><?= htmlspecialchars($k['nama_kendaraan']) ?></td>
-          <td><span class="jenis-badge"><?= htmlspecialchars($k['jenis_kendaraan']) ?></span></td>
+          <td>
+            <?php
+              $j_raw = trim($k['jenis_kendaraan']);
+              $j_low = strtolower($j_raw);
+              if (strpos($j_low, '2') !== false) {
+                  $cls = 'roda2'; $ico = '🏍';
+              } elseif (strpos($j_low, '4') !== false) {
+                  $cls = 'roda4'; $ico = '🚗';
+              } else {
+                  $cls = ''; $ico = '🚘';
+              }
+              $label = $j_raw !== '' ? $j_raw : 'Tidak diisi';
+            ?>
+            <span class="jenis-badge <?= $cls ?>"><?= $ico ?> <?= htmlspecialchars($label) ?></span>
+          </td>
           <td class="harga-cell">Rp <?= number_format($k['harga_per_hari'], 0, ',', '.') ?></td>
           <td>
             <div class="action-btns">
@@ -473,4 +501,4 @@ $msg = $_GET['msg'] ?? '';
 
 </main>
 </body>
-</html> 
+</html>
