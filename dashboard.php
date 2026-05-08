@@ -14,9 +14,6 @@ $result     = mysqli_query($mysqli, "SELECT * FROM kendaraan ORDER BY kode_unik_
 $kendaraan  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $total      = count($kendaraan);
 
-// Hitung rata-rata harga
-$rata_harga = $total > 0 ? array_sum(array_column($kendaraan, 'harga_per_hari')) / $total : 0;
-
 // Pesan sukses dari operasi CRUD
 $msg = $_GET['msg'] ?? '';
 ?>
@@ -426,25 +423,6 @@ $msg = $_GET['msg'] ?? '';
   <?php elseif ($msg === 'deleted'): ?>
     <div class="alert alert-danger">🗑 Kendaraan berhasil dihapus.</div>
   <?php endif; ?>
-
-  <!-- Stats -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-label">Total Kendaraan</div>
-      <div class="stat-value"><?= $total ?></div>
-      <div class="stat-unit">unit terdaftar</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Rata-rata Harga</div>
-      <div class="stat-value">Rp <?= number_format($rata_harga, 0, ',', '.') ?></div>
-      <div class="stat-unit">per hari</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Pengguna Aktif</div>
-      <div class="stat-value">1</div>
-      <div class="stat-unit">sesi sekarang</div>
-    </div>
-  </div>
 
   <!-- Table -->
   <div class="table-card">
