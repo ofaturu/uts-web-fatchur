@@ -465,16 +465,16 @@ $msg = $_GET['msg'] ?? '';
           <td><?= htmlspecialchars($k['nama_kendaraan']) ?></td>
           <td>
             <?php
-              $j_raw = trim($k['jenis_kendaraan']);
-              $j_low = strtolower($j_raw);
-              if (strpos($j_low, '2') !== false) {
-                  $cls = 'roda2'; $ico = '🏍';
-              } elseif (strpos($j_low, '4') !== false) {
-                  $cls = 'roda4'; $ico = '🚗';
+              $jenis = strtolower($k['jenis_kendaraan']);
+              if ($jenis == 'roda 2') {
+                $label = 'Roda 2';
+                $cls   = 'roda2';
+                  $ico   = '🏍';
               } else {
-                  $cls = ''; $ico = '🚘';
-              }
-              $label = $j_raw !== '' ? $j_raw : 'Tidak diisi';
+                $label = 'Roda 4';
+                $cls   = 'roda4';
+                $ico   = '🚗';
+                }
             ?>
             <span class="jenis-badge <?= $cls ?>"><?= $ico ?> <?= htmlspecialchars($label) ?></span>
           </td>
