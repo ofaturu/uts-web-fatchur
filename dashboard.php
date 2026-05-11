@@ -466,15 +466,15 @@ $msg = $_GET['msg'] ?? '';
           <td>
             <?php
               $jenis = strtolower($k['jenis_kendaraan']);
-              if ($jenis == 'roda 2') {
+              if ($jenis === 'roda 2') {
                 $label = 'Roda 2';
                 $cls   = 'roda2';
-                  $ico   = '🏍';
+                $ico   = '🏍';
               } else {
                 $label = 'Roda 4';
                 $cls   = 'roda4';
                 $ico   = '🚗';
-                }
+              }
             ?>
             <span class="jenis-badge <?= $cls ?>"><?= $ico ?> <?= htmlspecialchars($label) ?></span>
           </td>

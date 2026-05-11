@@ -320,8 +320,8 @@ $nama_user = htmlspecialchars($_SESSION['user_nama']);
             <select name="jenis_kendaraan" required>
               <option value="" disabled <?= $kendaraan['jenis_kendaraan'] == '' ? 'selected' : '' ?>>Pilih jenis kendaraan</option>
               <?php foreach (['Roda 2', 'Roda 4'] as $j): ?>
-                <?php $sel = strtolower($kendaraan['jenis_kendaraan']) == strtolower($j) ? 'selected' : ''; ?>
-              <option value="<?= $j ?>" <?= $sel ?>><?= $j ?></option>
+                <?php $sel = (strtolower(trim($kendaraan['jenis_kendaraan'])) == strtolower(trim($j))) ? 'selected' : ''; ?>
+                <option value="<?= $j ?>" <?= $sel ?>><?= $j ?></option>
               <?php endforeach; ?>
             </select>
           </div>
