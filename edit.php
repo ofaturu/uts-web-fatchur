@@ -318,11 +318,9 @@ $nama_user = htmlspecialchars($_SESSION['user_nama']);
           <div class="form-group">
             <label>Jenis Kendaraan <span class="required">*</span></label>
             <select name="jenis_kendaraan" required>
-              <?php
-              $jenis_list = ['Roda 2', 'Roda 4'];
-              foreach ($jenis_list as $j):
-                $sel = ($kendaraan['jenis_kendaraan'] === $j) ? 'selected' : '';
-              ?>
+              <option value="" disabled <?= $kendaraan['jenis_kendaraan'] == '' ? 'selected' : '' ?>>Pilih jenis kendaraan</option>
+              <?php foreach (['Roda 2', 'Roda 4'] as $j): ?>
+                <?php $sel = strtolower($kendaraan['jenis_kendaraan']) == strtolower($j) ? 'selected' : ''; ?>
               <option value="<?= $j ?>" <?= $sel ?>><?= $j ?></option>
               <?php endforeach; ?>
             </select>
